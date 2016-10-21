@@ -17,7 +17,7 @@ a normal distribution with two different sample sizes and an exponential distrib
 two different sample sizes.
 
 The central limit theorem states that the population of all possible samples of size n from 
-a population with ?? and variance ??2 approaches a normal distribution with mean ?? and ??2???n, when n approaches infinity.  
+a population with mu and variance sd^2 approaches a normal distribution with mean mu:x and sd:x = sd / sqrt(n), when n approaches infinity.  
 
 #Design
 We will use bootstrapping to estimate the sampling distribution.  Repeated sampling with replacement from 50 samples mimics what the population might look like.  To take a resample, numbers are randomly selected from the original sample, the mean is recorded, and then that observation is put back into the sample.  This is done 50 times to complete a single resample.  We will do 1000 resamples of our original sample size=50.

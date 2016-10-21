@@ -10,7 +10,7 @@ a normal distribution with two different sample sizes and an exponential distrib
 two different sample sizes.
 
 The central limit theorem states that the population of all possible samples of size n from 
-a population with ?? and variance ??2 approaches a normal distribution with mean ?? and ??2???n, when n approaches infinity.  
+a population with mu and variance sd^2 approaches a normal distribution with mean mu:x and sd:x = sd / sqrt(n), when n approaches infinity.  
 
 #Design
 We will use bootstrapping to estimate the sampling distribution.  Repeated sampling with replacement from 50 samples mimics what the population might look like.  To take a resample, numbers are randomly selected from the original sample, the mean is recorded, and then that observation is put back into the sample.  This is done 50 times to complete a single resample.  We will do 1000 resamples of our original sample size=50.
@@ -19,11 +19,11 @@ We will use bootstrapping to estimate the sampling distribution.  Repeated sampl
 Per the central limit theorem, when we use bootstrapping to generate 1000 replications of both the sample size 50 and 100 - using the normal and exponential distribution - we can see that by taking a large number of repeated samples of the original sample and then calculating the mean of the those samples, we get a mean that is very close to the original sample population mean.  However, due to the bias involved, the population mean is different than the bootstrap mean.  Also, the standard deviation of the original population mean divided by sqrt of the sample size is nearly equal to the bootstrap sd.  The data is normally distributed for the bootstrap mean.
 
 #Code Explanation
+In below code, we are using simple random sample using rnorm.  We are running obsersvations of two different sample sizes, namely 50 and 100, with pop mean=22 and pop sd=5.  We start by computing the mean of the sample.  Note that the sample mean is very close to the assumed true population mean of 22.  We then set the number of replications(nsims) to be 1000.
+
 Then we have created a function norm that does the following
   * Initializes the bootnorm vector to hold the replicated bootstrap means.  
   * Generates 1000 bootstrap means from sample x, using observations of size=50, and             replacing the values for every single resample.
-  
-In below code, we are using simple random sample using rnorm.  We are running obsersvations of two different sample sizes, namely 50 and 100, with pop mean=22 and pop sd=5.  We start by computing the mean of the sample.  Note that the sample mean is very close to the assumed true population mean of 22.  We then set the number of replications(nsims) to be 1000.
 
 Finally, we output the summary of bootnorm.  Note that the bootstrap mean is close to the sample mean (xbar).  Also, per the central limit theorem, the sd of 1000 bootstrap samples of normal distribution of size 50 and the sd of sample mean divided by the square root of the sample size are nearly equal.
 
